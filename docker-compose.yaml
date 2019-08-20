@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+    conrad-interface:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        hostname: conrad-interface
+        container_name: conrad-interface
+        entrypoint: python3 /app/main.py
+        ports:
+        - 7778:7778  # command port
+        - 7779:7779  # event port
+        volumes:
+        - ./main.py:/app/main.py:ro
+        links:
+        - "conrad-fhem:fhem"
+
+    conrad-fhem:
+        image: fhem/fhem
+        container_name: conrad-fhem
+        ports:
+        - 7072:7072
+        devices:
+         - /dev/ttyACM0:/dev/ttyACM0
+        volumes:
+        - ./fhem:/opt/fhem
