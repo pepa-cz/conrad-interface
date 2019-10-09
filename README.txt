@@ -1,9 +1,26 @@
+Instalace a spusteni kontejneru
+===============================
+
+  apt-get update
+  apt-get install git docker-compose python3-zmq
+  nainstalovat docker - https://docs.docker.com/install/linux/docker-ce/debian/
+  git clone https://github.com/pepa-cz/conrad-interface.git
+  cd conrad-interface
+  # Strcit conrad dongle do USB
+  docker-compose up
+
+* Ve druhem terminalu
+
+  python3 test/event_loop.py
+
+* Ve tretim terminalu
+
+  python3 test/pair.py
+  python3 test/unpair.py
+  python3 test/status.py
+
 Testovani
 =========
-
-Spusteni kontejneru, plne nabehnuti chvili trva..
-
-  docker-compose up  # pripadne 'docker-compose -d up' pro spusteni na pozadi
 
 Pro ucely ladeni, telnet na fhem
 
@@ -40,3 +57,4 @@ Asynchronni udalosti prichazejici pres ZMQ (viz example eventloop).
 - snd_cnt - odeslana zprava
 
 - resnd_cnt - retransmit
+
